@@ -44,5 +44,10 @@ namespace Constructor_Konevskii
             if (DeltaHeight - scroll.VerticalOffset < 140)
                 CreateStudent(Step,Count);
         }
+
+        private void Create_Zapis(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
