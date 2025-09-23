@@ -20,14 +20,29 @@ namespace Constructor_Konevskii
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Classes.Student> AllStudent = Classes.RepoStudents.AllStudent();
+        public int Count = 10;
+        public int Step = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        public void CreateStudent(int Step, int Count)
+        {
+            for (int iStudent = Step; iStudent < Step + Count; iStudent++)
+                if(AllStudent.Count > iStudent)
+                    parent.Children.Add(new Elements.Student(AllStudent[iStudent]));
+            this.Step = Step;
+        }
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-
+            ScrollViewer scroll = sender as ScrollViewer;
+            double ParentHeight = parent.ActualHeight;
+            double WindowHeight = scroll.ActualHeight - 20;
+            double DeltaHeight = ParentHeight - WindowHeight;
+            if (DeltaHeight - scroll.VerticalOffset < 140)
+                CreateStudent(Step,Count);
         }
     }
 }

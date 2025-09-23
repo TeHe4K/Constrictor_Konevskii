@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Constructor_Konevskii.Classes
 {
-    public class Student
+    public partial class Student
     {
         public string Firstname = "";
         public string Lastname = "";
         public string Surname = "";
         public bool Scholarship = false;
         public int Course = 4;
+        
 
         public Student(string Firstname, string Lastname, string Surname)
         {

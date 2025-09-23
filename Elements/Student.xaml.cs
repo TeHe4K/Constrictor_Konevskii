@@ -20,9 +20,12 @@ namespace Constructor_Konevskii.Elements
     /// </summary>
     public partial class Student : UserControl
     {
-        public Student()
+        public Student(Classes.Student student)
         {
             InitializeComponent();
+            tb_fio.Content = student.GetFIO();
+            tb_scholarship.Content = student.Scholarship ? "Cтипендпия: Получает" : "Стипендия: Не получает";
+            tb_Course.Content = $"Курс: {student.Course}";
         }
     }
 }
