@@ -14,7 +14,7 @@ namespace Constructor_Konevskii.Classes
         public string Surname = "";
         public bool Scholarship = false;
         public int Course = 4;
-        
+
 
         public Student(string Firstname, string Lastname, string Surname)
         {
@@ -23,7 +23,7 @@ namespace Constructor_Konevskii.Classes
             this.Surname = Surname;
         }
 
-        public Student(string Firstname,string Lastname, string Surname, bool Scholarship):this(Firstname, Lastname, Surname)
+        public Student(string Firstname, string Lastname, string Surname, bool Scholarship) : this(Firstname, Lastname, Surname)
         {
             this.Scholarship = Scholarship;
         }

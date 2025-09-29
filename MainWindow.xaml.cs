@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Constructor_Konevskii
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public List<Classes.Student> AllStudent = Classes.RepoStudents.AllStudent();
@@ -26,6 +23,7 @@ namespace Constructor_Konevskii
         public MainWindow()
         {
             InitializeComponent();
+            CreateStudent(0, Count);
         }
 
         public void CreateStudent(int Step, int Count)
@@ -39,26 +37,22 @@ namespace Constructor_Konevskii
                 }
             this.Step = Step;
         }
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            ScrollViewer scroll = sender as ScrollViewer;
-            double ParentHeight = parent.ActualHeight;
-            double WindowHeight = scroll.ActualHeight - 20;
-            double DeltaHeight = ParentHeight - WindowHeight;
-            if (DeltaHeight - scroll.VerticalOffset < 140)
-                CreateStudent(Step,Count);
-        }
+
         private void Student_OnEditRequested(Elements.Student studentControl)
         {
-            var editUser = new Elements.EditUser(studentControl);
             var panel = studentControl.Parent as Panel;
             if (panel != null)
             {
                 int index = panel.Children.IndexOf(studentControl);
+                var editUser = new Elements.EditUser(studentControl.StudentData, index);
                 panel.Children.RemoveAt(index);
                 panel.Children.Insert(index, editUser);
             }
         }
 
+        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+
+        }
     }
 }

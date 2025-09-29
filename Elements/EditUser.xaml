@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Constructor_Konevskii.Elements"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown">
-<Grid Height="50" Margin="0, 0, 0, 10" Background="#494a4d" >
+    <Grid Height="50" Margin="0, 0, 0, 10" Background="#494a4d">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
@@ -21,5 +21,5 @@
              Margin="9.8,10" Grid.Column="2" Foreground="White" FontSize="14" Background="#494a4d" BorderThickness="0" Content="Получает" Click="ScholarShipChange"/>
         <TextBox x:Name="tb_Course" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown"
              Margin="9.2,10,9.6,10" Grid.Column="3" Foreground="White" FontSize="14" Background="#494a4d" BorderThickness="0" Text=""/>
-</Grid>
+    </Grid>
 </UserControl>

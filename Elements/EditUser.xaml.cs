@@ -12,43 +12,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Constructor_Konevskii.Classes;
 
 namespace Constructor_Konevskii.Elements
 {
-    /// <summary>
-    /// Логика взаимодействия для EditUser.xaml
-    /// </summary>
     public partial class EditUser : UserControl
     {
-        private Classes.Student student;
-        private Student originalControl;
-        private int originalIndex;
-        public EditUser(Student student)
+        private Classes.Student _student;
+        private int _originalIndex;
+
+        public EditUser(Classes.Student student, int originalIndex)
         {
             InitializeComponent();
-            tb_fio.Text = student.tb_fio.Content.ToString();
-            tb_scholarship.Content = student.tb_scholarship.Content.ToString();
-            tb_Course.Text = $"Курс: {student.tb_Course}";
-        }
 
+            _student = student;
+            _originalIndex = originalIndex;
+
+            tb_fio.Text = student.GetFIO();
+            tb_scholarship.Content = student.Scholarship ? "Получает" : "Не получает";
+            tb_Course.Text = student.Course.ToString();
+
+            tb_fio.Focus();
+            tb_fio.SelectAll();
+        }
 
         private void ScholarShipChange(object sender, RoutedEventArgs e)
         {
-            if (tb_scholarship.Content == "Получает")
-                tb_scholarship.Content = "Не получает";
-            else
-                tb_scholarship.Content = "Получает";
-        }
-
-        private void ReturnToStudentView()
-        {
-            var parent = Parent as Panel;
-            if (parent != null)
-            {
-                parent.Children.RemoveAt(originalIndex);
-                parent.Children.Insert(originalIndex, new Elements.Student(student));
-            }
+            bool currentScholarship = _student.Scholarship;
+            _student.Scholarship = !currentScholarship;
+            tb_scholarship.Content = _student.Scholarship ? "Получает" : "Не получает";
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -58,27 +49,77 @@ namespace Constructor_Konevskii.Elements
                 CancelChanges();
                 e.Handled = true;
             }
+            else if (e.Key == Key.Enter)
+            {
+                SaveChanges();
+                e.Handled = true;
+            }
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                student.Firstname = tb_fio.Text.Split(' ')[0];
-                student.Lastname = tb_fio.Text.Split(' ')[1];
-                student.Surname = tb_fio.Text.Split(' ')[2];
-                int.TryParse(tb_Course.Text, out student.Course);
-                if (tb_scholarship.Content == "Получает")
-                    student.Scholarship = true;
-                else
-                    student.Scholarship = false;
-                ReturnToStudentView();
+                SaveChanges();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Escape)
+            {
+                CancelChanges();
                 e.Handled = true;
             }
         }
+
+        private void SaveChanges()
+        {
+            try
+            {
+                string[] fioParts = tb_fio.Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (fioParts.Length >= 3)
+                {
+                    _student.Lastname = fioParts[0];
+                    _student.Firstname = fioParts[1];
+                    _student.Surname = fioParts[2];
+                }
+                if (int.TryParse(tb_Course.Text, out int course))
+                {
+                    _student.Course = course;
+                }
+
+                ReturnToStudentView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void CancelChanges()
         {
             ReturnToStudentView();
+        }
+
+        private void ReturnToStudentView()
+        {
+            var parent = Parent as Panel;
+            if (parent != null)
+            {
+                var studentElement = new Elements.Student(_student);
+                studentElement.OnEditRequested += (studentControl) =>
+                {
+                    var panel = studentControl.Parent as Panel;
+                    if (panel != null)
+                    {
+                        int index = panel.Children.IndexOf(studentControl);
+                        var editUser = new Elements.EditUser(studentControl.StudentData, index);
+                        panel.Children.RemoveAt(index);
+                        panel.Children.Insert(index, editUser);
+                    }
+                };
+
+                parent.Children.RemoveAt(_originalIndex);
+                parent.Children.Insert(_originalIndex, studentElement);
+            }
         }
     }
 }
