@@ -12,6 +12,5 @@
 
             </StackPanel>
         </ScrollViewer>
-        <Button Content="Добавить запись" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Height="36" Width="321" Click="Create_Zapis"/>
     </Grid>
 </Window>

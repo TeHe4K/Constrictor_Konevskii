@@ -20,12 +20,19 @@ namespace Constructor_Konevskii.Elements
     /// </summary>
     public partial class Student : UserControl
     {
+        public Classes.Student StudentData { get; private set; }
+        public event Action<Student> OnEditRequested;
         public Student(Classes.Student student)
         {
             InitializeComponent();
             tb_fio.Content = student.GetFIO();
             tb_scholarship.Content = student.Scholarship ? "Cтипендпия: Получает" : "Стипендия: Не получает";
             tb_Course.Content = $"Курс: {student.Course}";
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OnEditRequested?.Invoke(this);
         }
     }
 }

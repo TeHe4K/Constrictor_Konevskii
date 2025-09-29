@@ -31,8 +31,12 @@ namespace Constructor_Konevskii
         public void CreateStudent(int Step, int Count)
         {
             for (int iStudent = Step; iStudent < Step + Count; iStudent++)
-                if(AllStudent.Count > iStudent)
-                    parent.Children.Add(new Elements.Student(AllStudent[iStudent]));
+                if (AllStudent.Count > iStudent)
+                {
+                    var studentElement = new Elements.Student(AllStudent[iStudent]);
+                    studentElement.OnEditRequested += Student_OnEditRequested;
+                    parent.Children.Add(studentElement);
+                }
             this.Step = Step;
         }
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -44,10 +48,17 @@ namespace Constructor_Konevskii
             if (DeltaHeight - scroll.VerticalOffset < 140)
                 CreateStudent(Step,Count);
         }
-
-        private void Create_Zapis(object sender, RoutedEventArgs e)
+        private void Student_OnEditRequested(Elements.Student studentControl)
         {
-
+            var editUser = new Elements.EditUser(studentControl);
+            var panel = studentControl.Parent as Panel;
+            if (panel != null)
+            {
+                int index = panel.Children.IndexOf(studentControl);
+                panel.Children.RemoveAt(index);
+                panel.Children.Insert(index, editUser);
+            }
         }
+
     }
 }
