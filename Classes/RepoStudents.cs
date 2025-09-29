@@ -35,6 +35,36 @@ namespace Constructor_Konevskii.Classes
             allStudent.Add(new Student("Тронин", "Александр", "Владиславович"));
             allStudent.Add(new Student("Халилов", "Дамит", "Ринатович"));
             allStudent.Add(new Student("Шестаков", "Дмитрий", "Андреевич"));
+            allStudent.Add(new Student("Мутагаров", "Даниил", "Ринатович"));
+            allStudent.Add(new Student("Нарижный", "Данил", "Владленович"));
+            allStudent.Add(new Student("Никонов", "Арсений", "Дмитриевич", false, 3));
+            allStudent.Add(new Student("Оборин", "Даниил", "Артёмович"));
+            allStudent.Add(new Student("Посадских", "Дарья", "Андреевна"));
+            allStudent.Add(new Student("Сторожев", "Денис", "Романович", true));
+            allStudent.Add(new Student("Суслов", "Егор", "Владимирович"));
+            allStudent.Add(new Student("Токмаков", "Даниил", "Сергеевич", true));
+            allStudent.Add(new Student("Тронин", "Александр", "Владиславович"));
+            allStudent.Add(new Student("Халилов", "Дамит", "Ринатович"));
+            allStudent.Add(new Student("Шестаков", "Дмитрий", "Андреевич"));
+            allStudent.Add(new Student("Оборин", "Даниил", "Артёмович"));
+            allStudent.Add(new Student("Посадских", "Дарья", "Андреевна"));
+            allStudent.Add(new Student("Сторожев", "Денис", "Романович", true));
+            allStudent.Add(new Student("Суслов", "Егор", "Владимирович"));
+            allStudent.Add(new Student("Токмаков", "Даниил", "Сергеевич", true));
+            allStudent.Add(new Student("Тронин", "Александр", "Владиславович"));
+            allStudent.Add(new Student("Халилов", "Дамит", "Ринатович"));
+            allStudent.Add(new Student("Шестаков", "Дмитрий", "Андреевич"));
+            allStudent.Add(new Student("Мутагаров", "Даниил", "Ринатович"));
+            allStudent.Add(new Student("Нарижный", "Данил", "Владленович"));
+            allStudent.Add(new Student("Никонов", "Арсений", "Дмитриевич", false, 3));
+            allStudent.Add(new Student("Оборин", "Даниил", "Артёмович"));
+            allStudent.Add(new Student("Посадских", "Дарья", "Андреевна"));
+            allStudent.Add(new Student("Сторожев", "Денис", "Романович", true));
+            allStudent.Add(new Student("Суслов", "Егор", "Владимирович"));
+            allStudent.Add(new Student("Токмаков", "Даниил", "Сергеевич", true));
+            allStudent.Add(new Student("Тронин", "Александр", "Владиславович"));
+            allStudent.Add(new Student("Халилов", "Дамит", "Ринатович"));
+            allStudent.Add(new Student("Шестаков", "Дмитрий", "Андреевич"));
 
             return allStudent;
         }

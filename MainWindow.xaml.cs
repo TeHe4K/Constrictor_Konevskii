@@ -23,10 +23,10 @@ namespace Constructor_Konevskii
         public MainWindow()
         {
             InitializeComponent();
-            CreateStudent(0, Count);
+            CreateStudent();
         }
 
-        public void CreateStudent(int Step, int Count)
+        public void CreateStudent()
         {
             for (int iStudent = Step; iStudent < Step + Count; iStudent++)
                 if (AllStudent.Count > iStudent)
@@ -35,7 +35,7 @@ namespace Constructor_Konevskii
                     studentElement.OnEditRequested += Student_OnEditRequested;
                     parent.Children.Add(studentElement);
                 }
-            this.Step = Step;
+            this.Step += Count;
         }
 
         private void Student_OnEditRequested(Elements.Student studentControl)
@@ -52,7 +52,15 @@ namespace Constructor_Konevskii
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            ScrollViewer scroll = sender as ScrollViewer;
+            double ParentHeight = parent.ActualHeight;
+            double WindowHeight = scroll.ActualHeight - 20;
+            double DeltaHeight = ParentHeight - WindowHeight;
 
+            if (DeltaHeight - scroll.VerticalOffset < 140)
+            {
+                CreateStudent();
+            }
         }
     }
 }
