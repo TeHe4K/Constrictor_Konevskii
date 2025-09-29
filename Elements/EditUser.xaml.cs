@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Constructor_Konevskii.Elements
 {
@@ -33,6 +35,7 @@ namespace Constructor_Konevskii.Elements
 
             tb_fio.Focus();
             tb_fio.SelectAll();
+            Ico_Replace.Source = new BitmapImage(new Uri(student.Src, UriKind.RelativeOrAbsolute));
         }
 
         private void ScholarShipChange(object sender, RoutedEventArgs e)
@@ -85,7 +88,10 @@ namespace Constructor_Konevskii.Elements
                 {
                     _student.Course = course;
                 }
-
+                if (Src != null)
+                {
+                    _student.Src = Src.ToString();
+                }
                 ReturnToStudentView();
             }
             catch (Exception ex)
@@ -119,6 +125,19 @@ namespace Constructor_Konevskii.Elements
 
                 parent.Children.RemoveAt(_originalIndex);
                 parent.Children.Insert(_originalIndex, studentElement);
+            }
+        }
+
+        string Src;
+        private void Click_Ico(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Src = openFileDialog.FileName;
+                _student.Src = Src;
+
+                ReturnToStudentView();
             }
         }
     }

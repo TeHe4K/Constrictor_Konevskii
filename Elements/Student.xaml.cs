@@ -27,6 +27,7 @@ namespace Constructor_Konevskii.Elements
             tb_fio.Content = student.GetFIO();
             tb_scholarship.Content = student.Scholarship ? "Cтипендпия: Получает" : "Стипендия: Не получает";
             tb_Course.Content = $"Курс: {student.Course}";
+            Ico.Source = new BitmapImage(new Uri(student.Src, UriKind.RelativeOrAbsolute));
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

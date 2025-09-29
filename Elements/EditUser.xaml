@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Height="30" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" Width="30"
-             Stretch="UniformToFill" Source="/Constructor_Konevskii;component/Images/ic_user.png"/>
+             Stretch="UniformToFill" Source="C:\Users\student-a502\Source\Repos\Constrictor_Konevskii\Images\ic_user.png" x:Name="Ico_Replace" MouseLeftButtonDown="Click_Ico"/>
         <TextBox x:Name="tb_fio" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown"
              Margin="9.4,10,10.2,10" Grid.Column="1" Foreground="White" FontSize="14" Background="#494a4d" BorderThickness="0" Text=""/>
         <Button x:Name="tb_scholarship" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown"

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Constructor_Konevskii.Elements;
 
 namespace Constructor_Konevskii.Classes
 {
@@ -13,7 +14,7 @@ namespace Constructor_Konevskii.Classes
             List<Student> allStudent = new List<Student>();
 
             allStudent.Add(new Student("Болотов", "Роман", "Владимирович"));
-            allStudent.Add(new Student("Григорьев", "Евгений", "Олегович"));
+            allStudent.Add(new Student("Григорьев", "Евгений", "Олегович" , false , 5));
             allStudent.Add(new Student("Гудков", "Георгий", "Константинович", false, 3));
             allStudent.Add(new Student("Исыпова", "Алёна", "Александровна", true));
             allStudent.Add(new Student("Иутин", "Павел", "Алексеевич", false, 3));
